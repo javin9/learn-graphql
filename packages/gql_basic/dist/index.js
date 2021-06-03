@@ -1,4 +1,6 @@
-import "core-js/modules/es.array.flat.js";
+"use strict";
+
+require("core-js/modules/es.array.flat.js");
 
 /*
  * @Desc:
@@ -10,3 +12,4 @@ import "core-js/modules/es.array.flat.js";
  */
 var arr1 = [0, 1, 2, [3, 4]];
 console.log(arr1.flat());
+console.log();

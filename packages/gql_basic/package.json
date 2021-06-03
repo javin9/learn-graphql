@@ -17,11 +17,13 @@
     "registry": "https://registry.yarnpkg.com/"
   },
   "scripts": {
-    "build": "babel ./src/index.js --out-file ./dist/index.js"
+    "build": "babel ./src/index.js --out-file ./dist/index.js",
+    "dev": "nodemon --exec babel-node ./src/index.js"
   },
   "dependencies": {
     "@babel/cli": "^7.14.3",
     "@babel/core": "^7.14.3",
+    "@babel/node": "^7.14.2",
     "@babel/preset-env": "^7.14.4",
     "core-js": "3"
   }
