@@ -1,0 +1,28 @@
+{
+  "name": "gql_basic",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "rupid <liujianwei1213@163.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/gql_basic.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.yarnpkg.com/"
+  },
+  "scripts": {
+    "build": "babel ./src/index.js --out-file ./dist/index.js"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "core-js": "3"
+  }
+}

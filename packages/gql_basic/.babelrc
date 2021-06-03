@@ -1,0 +1,12 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "corejs": 3, //指定3版本
+        "useBuiltIns": "usage",
+        "modules": false
+      }
+    ]
+  ]
+}
