@@ -25,6 +25,7 @@
     "@babel/core": "^7.14.3",
     "@babel/node": "^7.14.2",
     "@babel/preset-env": "^7.14.4",
-    "core-js": "3"
+    "core-js": "3",
+    "graphql-yoga": "^1.18.3"
   }
 }
