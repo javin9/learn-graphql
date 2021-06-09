@@ -21,7 +21,6 @@ const typeDefs = `
  type Mutation{
    createUser(params:CreateUserInput):User
    createPost(title:String!,content:String!,authorID:String):Post
-   removeUser(id:String):User
  }
  input CreateUserInput{
   name:String!
@@ -64,7 +63,7 @@ const typeDefs = `
   }
   `
 
-let posts = (() => {
+const posts = (() => {
   let arr = []
   for (let index = 0; index < 6; index++) {
     arr.push(
@@ -81,12 +80,12 @@ let posts = (() => {
   return arr
 })()
 
-let users = (() => {
+const users = (() => {
   let arr = []
   for (let index = 0; index < 6; index++) {
     arr.push(
       {
-        id: `${index}`,
+        id: index,
         name: `name=${index}`,
         emial: '',
         age: index * 2,
@@ -99,7 +98,7 @@ let users = (() => {
   return arr
 })()
 
-let comments = [
+const comments = [
   {
     id: "0",
     content: "评论内容"
@@ -122,30 +121,6 @@ let comments = [
 // 每个字段定义一个函数，填写具体的实现
 const resolvers = {
   Mutation: {
-    removeUser (parent, args) {
-      console.log(args.id)
-      console.log(users)
-      const user = users.find((item) => item.id === args.id)
-      if (!user) {
-        throw new Error('用户不存在')
-      }
-      users = users.filter((item) => item.id !== args.id)
-      // 删除post+删除评论
-      user.posts.forEach((postId) => {
-        const index = posts.findIndex((post) => post.id === postId)
-        console.log(index)
-        if (index !== -1) {
-          const post = posts[index]
-          //删除评论
-          post.comments.forEach((commentId) => {
-            comments = comments.filter((commentItem) => commentItem.id !== commentId)
-          })
-          // 删除post
-          posts.splice(index, 1)
-        }
-      })
-      return user
-    },
     createUser (parent, args, ctx, info) {
       console.log(args)
       // { name: 'cupid', email: 'liujainwe@tal.com', age: 18 }

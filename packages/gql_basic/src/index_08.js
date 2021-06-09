@@ -11,25 +11,12 @@
 
 
 import { GraphQLServer } from 'graphql-yoga'
-import { v4 as uuid } from 'uuid'
 
 
 // 类型定义
 // 自定义User类型 规范-首字符大写
 
 const typeDefs = `
- type Mutation{
-   createUser(params:CreateUserInput):User
-   createPost(title:String!,content:String!,authorID:String):Post
-   removeUser(id:String):User
- }
- input CreateUserInput{
-  name:String!
-  email:String!
-  age:Int
- }
-
- 
   type Query{
     scores:[Int!]!
     userInfo:User!
@@ -43,7 +30,6 @@ const typeDefs = `
     id:ID!
     name:String!
     age:Int!
-    email:String,
     english:Float
     inClass:Boolean
     posts:[Post]
@@ -64,7 +50,7 @@ const typeDefs = `
   }
   `
 
-let posts = (() => {
+const posts = (() => {
   let arr = []
   for (let index = 0; index < 6; index++) {
     arr.push(
@@ -81,14 +67,13 @@ let posts = (() => {
   return arr
 })()
 
-let users = (() => {
+const users = (() => {
   let arr = []
   for (let index = 0; index < 6; index++) {
     arr.push(
       {
-        id: `${index}`,
+        id: index,
         name: `name=${index}`,
-        emial: '',
         age: index * 2,
         english: 90.1,
         inClass: true,
@@ -99,7 +84,7 @@ let users = (() => {
   return arr
 })()
 
-let comments = [
+const comments = [
   {
     id: "0",
     content: "评论内容"
@@ -121,66 +106,6 @@ let comments = [
 // 具体实现
 // 每个字段定义一个函数，填写具体的实现
 const resolvers = {
-  Mutation: {
-    removeUser (parent, args) {
-      console.log(args.id)
-      console.log(users)
-      const user = users.find((item) => item.id === args.id)
-      if (!user) {
-        throw new Error('用户不存在')
-      }
-      users = users.filter((item) => item.id !== args.id)
-      // 删除post+删除评论
-      user.posts.forEach((postId) => {
-        const index = posts.findIndex((post) => post.id === postId)
-        console.log(index)
-        if (index !== -1) {
-          const post = posts[index]
-          //删除评论
-          post.comments.forEach((commentId) => {
-            comments = comments.filter((commentItem) => commentItem.id !== commentId)
-          })
-          // 删除post
-          posts.splice(index, 1)
-        }
-      })
-      return user
-    },
-    createUser (parent, args, ctx, info) {
-      console.log(args)
-      // { name: 'cupid', email: 'liujainwe@tal.com', age: 18 }
-      console.log(args)
-      const { name, email, age } = args.params
-      const isExist = users.some((item) => item.email === email)
-      console.log(isExist)
-      if (isExist) {
-        throw new Error('邮箱已被占用')
-      }
-
-      const newUser = {
-        id: uuid(),
-        ...args.params
-      }
-      users.push(newUser)
-      console.log(newUser)
-      return newUser
-    },
-    createPost (parent, args) {
-      // title: String!, content: String!, authorID
-      // const user = users.find((item) => item.id === authorID)
-      const { title, content, authorID } = args
-      console.log(args)
-      const newPost = {
-        id: uuid(),
-        title,
-        content,
-        author: authorID
-      }
-      console.log(newPost)
-      posts.push(newPost)
-      return newPost
-    }
-  },
   Query: {
     comments () {
       return [...comments]
