@@ -22,7 +22,7 @@
   },
   "scripts": {
     "build": "babel ./src/index.js --out-file ./dist/index.js",
-    "dev": "nodemon --exec babel-node ./src/index.js"
+    "dev": "nodemon -e json,graphql,js,gql  --exec babel-node ./src/index.js"
   },
   "dependencies": {
     "@babel/cli": "^7.14.3",
