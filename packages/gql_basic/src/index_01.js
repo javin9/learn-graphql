@@ -8,7 +8,7 @@
  */
 import { GraphQLServer } from 'graphql-yoga'
 
-// 类型定义
+// 类型定义(Schama)
 const typeDefs = `
   type Query {
     name:String!

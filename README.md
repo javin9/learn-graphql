@@ -169,3 +169,5 @@ mutation{
   }
 }
 ```
+
+- [GraphQL，Apollo Client，PostgreSQL三者的关系和区别，以及在项目中的角色](https://blog.csdn.net/sun_DongLiang/article/details/86985560)

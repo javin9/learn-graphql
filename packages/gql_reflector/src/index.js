@@ -8,6 +8,7 @@
  */
 
 const fs = require('fs')
+const PORT = 4004
 import { GraphQLServer } from 'graphql-yoga'
 import Query from "./resolvers/query"
 import Mutation from "./resolvers/mutation"
@@ -31,4 +32,4 @@ const server = new GraphQLServer({
   context: { db }
 })
 
-server.start(() => console.log('Server is running on localhost:4000'))
+server.start({ port: PORT }, () => console.log(`Server is running on http://localhost:${PORT}`))
