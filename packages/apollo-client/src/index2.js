@@ -28,8 +28,8 @@ const client = new ApolloClient({
 const queryString = gql`
 query{
   getUserList{
-     id
     name
+    age
     email
   }
 }

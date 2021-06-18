@@ -123,8 +123,6 @@ const resolvers = {
   Mutation: {
     createUser (parent, args, ctx, info) {
       console.log(args)
-      // { name: 'cupid', email: 'liujainwe@tal.com', age: 18 }
-      console.log(args)
       const { name, email, age } = args.params
       const isExist = users.some((item) => item.email === email)
       console.log(isExist)

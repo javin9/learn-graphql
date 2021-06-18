@@ -79,7 +79,6 @@ query{
 const mutataionString = gql`
 mutation($params:CreateUserInput){
   createUser(params:$params){
-    id
     name
     email
     age
