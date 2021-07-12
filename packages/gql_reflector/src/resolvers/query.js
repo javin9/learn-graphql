@@ -37,5 +37,9 @@ export default {
   },
   getCommentList (parent, args, { db }) {
     return db.commentList
+  },
+  getUserByInfo (parent, args, { db }) {
+    console.log(JSON.stringify(args.params))
+    return db.userList[0]
   }
 }

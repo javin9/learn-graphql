@@ -5,17 +5,19 @@
  }
  
  input CreateUserInput{
-  name:String!
+  name:String
   email:String!
   age:Int
   height:Float
  }
+
 
 type Query{
   getUserByID(id:String!):[User!]
   getPostByID(id:String!):[Post!]
   getCommentByID(id:String!):[Comment!]
   getUserList:[User!]
+  getUserByInfo(params:CreateUserInput):User
   getPostList:[Post!]
   getCommentList:[Comment!]
 }
@@ -44,3 +46,5 @@ type Comment{
   author:User
   post:Post
 }
+
+
