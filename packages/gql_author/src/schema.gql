@@ -1,0 +1,125 @@
+ 
+# 系统
+type System{
+  id:ID!
+  name:String!
+  description:String!
+  # 系统下面的角色
+  roles:[Role]
+  # 系统拥有的权限
+  permissions:[Permission]
+}
+
+# 权限
+type Permission {
+  id:ID!
+  name:String!
+  description:String!
+  #权限属于哪个系统
+  system:System
+}
+
+# 角色
+type Role {
+	id: ID!
+  name:String!
+  description:String!
+  system:System!
+  permissions:[ Permission!]
+}
+
+# 用户
+type User{
+  id: ID!
+  # 工号
+  code:Int!
+  # 姓名
+  name: String!
+  # 邮箱
+  email:String!
+  # 密码
+  password: String!
+  # 用户角色 可以为空
+  roles:[Role]
+  # 用户权限 可以为空
+  permissions:[Permission]
+  # 拥有的系统权限
+  # systems:[System]
+}
+
+
+# 查询用户输入参数 格式：XxxParams
+input UserParams{
+  code:Int
+  email:String
+}
+input LoginParams{
+  email:String!
+  password:String!
+}
+
+# 查询
+type Query{
+  login(params:LoginParams):Boolean
+  # 系统列表
+  getSystemList:[System]
+  # 根据ID查询系统详情
+  getSystemByID(id:String):System
+  # 根据用户ID查用户详情
+  getUserByID(id:String):User
+  # 根据工号或邮箱查询指定用户信息
+  getUserList(params:UserParams):[User]
+  # 根据系统ID查询角色列表
+  getRoleListBySystemID(id:String):[Role]
+}
+
+
+# 编辑用户输入参数 格式：XxxFormData
+input UserFormData{
+  id:ID!
+  # 工号
+  code:Int!
+  # 姓名
+  name: String!
+  # 邮箱
+  email:String!
+  # 密码
+  password: String!
+  # 确认密码
+  checkPassword:String!
+}
+
+# 编辑角色信息参数
+input RoleFormData{
+  id: ID!
+  name:String!
+  description:String!
+  system:System!
+  permissions:[ Permission!]
+}
+
+# 编辑系统信息参数
+input SystemFormData{
+  id:ID!
+  name:String!
+  description:String!
+}
+# 编辑系统权限信息
+input SystemPermissionFormData{
+  systemID:ID!
+  permissionID!
+  name:String!
+  description:String!
+}
+
+# 编辑
+type Mutation{
+  # 创建或者编辑权限信息
+  createdOrUpdateSystemPermisson(data:SystemPermissionFormData):Permission
+  # 创建或编辑系统信息
+  createdOrUpdateSystem(data:SystemFormData):System
+  # 创建或者编辑用户信息[注册逻辑]
+  createOrUpdateUser(data:UserFormData):User
+  # 创建或编辑角色信息
+  createOrUpdateRole(data:RoleFormData):Role
+}
