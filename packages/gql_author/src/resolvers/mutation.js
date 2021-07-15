@@ -33,15 +33,18 @@ export default {
    * @return User
    */
   createOrUpdateUser (parent, args, { db }, info) {
-    //TODO:
-    return {}
+    console.log(JSON.stringify(args))
+    return db.userList[0]
   },
   /**
    * 创建或编辑角色信息
    * @param {RoleFormData} data 
    */
   createOrUpdateRole (parent, args, { db }, info) {
-    //TODO:
-    return {}
+    //mock数据：直接返回一个成功
+    return db.roleList[0]
+  },
+  addUserToRole (parent, args, { db }, info) {
+    //  直接返回成功
   }
 }

@@ -14,21 +14,24 @@ export default {
    */
   login (parent, args, { db }) {
     //TODO:
-    return true
+    console.log(JSON.stringify(args))
+    return db.userList[0]
   },
   /**
    * 系统列表
    */
   getSystemList (parent, args, { db }) {
-    //TODO:
-    return []
+    return db.systemList
   },
   /**
    * 根据ID查询系统详情
-   * @param {*} id 
+   * @param {*} _id 
    */
   getSystemByID (parent, args, { db }) {
-    //TODO:
+    console.log(JSON.stringify(args))
+    return db.systemList.find((item) => item._id === args._id)
+  },
+  getUserByID (parent, args, { db }) {
     return {}
   },
   /**
@@ -37,16 +40,10 @@ export default {
    * @returns [User]
    */
   getUserList (parent, args, { db }) {
-    //TODO:
-    return []
+    return db.userList
   },
-  /**
-   * 根据系统ID查询角色列表
-   * @param {*} id 
-   * @returns [Role]
-   */
-  getRoleListBySystemID (parent, args, { db }) {
-    //TODO:
-    return []
+  getRoleByID (parent, args, { db }) {
+    console.log(JSON.stringify(args))
+    return db.roleList.find((item) => item._id === args._id)
   }
 }

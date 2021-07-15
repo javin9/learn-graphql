@@ -1,4 +1,3 @@
- 
 # 系统
 type System{
   _id:ID!
@@ -6,7 +5,7 @@ type System{
   description:String!
   # 系统下面的角色
   roles:[Role]
-  # 系统拥有的权限
+  # 系统拥有的权限，静态数组
   permissions:[Permission]
 }
 
@@ -21,13 +20,13 @@ type Permission {
 
 # 角色
 type Role {
-	_id: ID!
+  _id: ID!
   name:String!
   description:String!
   system:System!
   users:[User]
+  # 角色拥有这个系统的哪些权限
   permissions:[ Permission!]
- 
 }
 
 # 用户
@@ -43,12 +42,16 @@ type User{
   password: String!
   # 用户角色 可以为空
   roles:[Role]
+  # 用户权限 可以为空
+  # permissions:[Permission]
+  # 拥有的系统权限
+  # systems:[System]
 }
 
 
 # 查询用户输入参数 格式：XxxParams
 # input UserParams{
-#   code:Int
+#   code:String
 #   email:String
 # }
 input LoginParams{
@@ -59,6 +62,7 @@ input LoginParams{
 # 查询
 type Query{
   login(params:LoginParams):User
+  logOut(params:LoginParams):Boolean
   # 系统列表
   getSystemList:[System]
   # 根据ID查询系统详情
@@ -68,9 +72,9 @@ type Query{
   # 根据工号或邮箱查询指定用户信息
   getUserList:[User]
   # 根据系统ID查询角色列表
-  # 角色信息
+  getRoleListBySystemID(id:String!):[Role]
+  # 查询角色详情
   getRoleByID(_id:String!):Role
-  
 }
 
 
@@ -94,8 +98,8 @@ input RoleFormData{
   _id: ID
   name:String!
   description:String!
-  system:ID!
-  permissions:[ String!]
+  system: ID!
+  permissions: [String!]
 }
 
 # 编辑系统信息参数
@@ -106,8 +110,8 @@ input SystemFormData{
 }
 # 编辑系统权限信息
 input SystemPermissionFormData{
-  systemID:ID!
-  permission:ID!
+  system:ID! # 从属哪个系统
+  _id:ID
   name:String!
   description:String!
 }
@@ -117,14 +121,12 @@ input AddFormData{
   _id: ID!
   userId:ID!
 }
-
 type addUserResult{
   _id: ID!
   name:String!
   description:String!
   user:User!
 }
-
 # 编辑
 type Mutation{
   # 创建或者编辑权限信息

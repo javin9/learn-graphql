@@ -8,13 +8,21 @@
  */
 export default {
   system (parent, args, { db }) {
-    // TODO：
-    return db.systemList.filter((item) => item.id === parent.system)
+    return db.systemList.find((item) => item._id === parent.system)
   },
   permissions (parent, args, { db }) {
-    // TODO：
     return parent.permissions.map((pid) => {
-      return db.permissionList.find((item) => item.id == pid)
+      return db.permissionList.find((item) => item._id == pid)
+    })
+  },
+  users (parent, args, { db }) {
+    console.log(parent.users)
+    return parent.users.map((userID) => {
+      return db.userList.find((item) => item._id === userID)
     })
   }
 }
+
+// system:System!
+//   users:[User]
+//   permissions:[ Permission!]

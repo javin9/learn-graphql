@@ -8,7 +8,7 @@
  */
 
 export default {
-  systemId (parent, args, { db }) {
-    return db.systemList.filter((item) => item.id === parent.system)
+  system (parent, args, { db }) {
+    return db.systemList.filter((item) => item._id === parent.system)
   }
 }
