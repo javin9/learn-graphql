@@ -1,0 +1,55 @@
+ type Mutation{
+   createUser(params:CreateUserInput):User
+   createPost(title:String!,content:String!,authorID:String):Post
+   removeUser(id:String):User
+ }
+ 
+ input CreateUserInput{
+  name:String
+  email:String!
+  age:Int
+  height:Float
+ }
+
+
+type Query{
+  getUserByID(id:String!):[User!]
+  getPostByID(id:String!):[Post!]
+  getCommentByID(id:String!):[Comment!]
+  getUserList:[User!]
+  getUserByInfo(params:CreateUserInput):User
+  getPostList:[Post!]
+  getCommentList:[Comment!]
+}
+type User {
+  id: ID!
+  name:String!
+  age:Int!
+  email:String
+  height:Float
+  posts:[Post]
+  comments:[Comment]
+}
+
+type Post {
+  id:ID!
+  title:String!
+  content:String!
+  isPublish:Boolean
+  author:User
+  comments:[Comment]
+}
+
+type Comment{
+  id:ID!
+  content:String!
+  author:User
+  post:Post
+}
+
+type Subscription{
+  somethingChanged:Int!
+  comment(postId:String):Comment
+}
+
+

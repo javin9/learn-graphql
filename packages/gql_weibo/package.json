@@ -1,0 +1,41 @@
+{
+  "name": "gql_reflector",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "rupid <liujianwei1213@163.com>",
+  "homepage": "https://github.com/rupid/learn-graphql#readme",
+  "license": "ISC",
+  "main": "lib/gql_reflector.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.yarnpkg.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rupid/learn-graphql.git"
+  },
+  "scripts": {
+    "build": "babel ./src/index.js --out-file ./dist/index.js",
+    "dev:server": "nodemon -e json,graphql,js,gql  --exec babel-node ./src/index.js"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/node": "^7.14.2",
+    "@babel/preset-env": "^7.14.4",
+    "axois": "0.0.1-security",
+    "core-js": "3",
+    "crypto": "^1.0.1",
+    "graphql-yoga": "^1.18.3",
+    "uuid": "^8.3.2"
+  },
+  "bugs": {
+    "url": "https://github.com/rupid/learn-graphql/issues"
+  }
+}
