@@ -1,3 +1,11 @@
+<!--
+ * @Desc: 
+ * @FilePath: /learn-graphql/packages/react-client/README.md
+ * @Author: liujianwei1
+ * @Date: 2021-07-23 15:12:09
+ * @LastEditors: liujianwei1
+ * @Reference Desc: 
+-->
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +76,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+### https://www.apollographql.com/docs/react/migrating/apollo-client-3-migration/#updating-imports

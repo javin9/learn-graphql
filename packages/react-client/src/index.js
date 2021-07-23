@@ -1,17 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+/*
+ * @Desc: 
+ * @FilePath: /learn-graphql/packages/react-client/src/index.js
+ * @Author: liujianwei1
+ * @Date: 2021-07-23 15:12:09
+ * @LastEditors: liujianwei1
+ * @Reference Desc: 
+ */
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import App from './App'
+import { client } from "./appollo/index"
+import { ApolloProvider } from "@apollo/client"
+import reportWebVitals from './reportWebVitals'
 
 ReactDOM.render(
-  <React.StrictMode>
+  <ApolloProvider client={client}>
+    {/* <React.StrictMode> */}
     <App />
-  </React.StrictMode>,
+    {/* </React.StrictMode> */}
+  </ApolloProvider>
+  ,
   document.getElementById('root')
-);
+)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals()
