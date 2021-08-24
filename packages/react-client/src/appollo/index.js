@@ -16,6 +16,14 @@ import {
 
 export const client = new ApolloClient({
   uri: 'http://localhost:4004',
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: 'no-cache'
+    },
+    query: {
+      fetchPolicy: 'no-cache'
+    }
+  }
 })
 
