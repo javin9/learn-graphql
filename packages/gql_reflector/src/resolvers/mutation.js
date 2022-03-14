@@ -7,18 +7,20 @@
  * @Reference Desc:
  */
 
-import { v4 as uuid } from 'uuid'
+import { v4 as uuid } from 'uuid';
 export default {
-  createUser (parent, args, { db }, info) {
-    const isExist = db.userList.some((item) => item.email === args.params.email)
+  createUser(parent, args, { db }, info) {
+    const isExist = db.userList.some(
+      (item) => item.email === args.params.email,
+    );
     if (isExist) {
-      throw new Error('邮箱已被占用')
+      throw new Error('邮箱已被占用');
     }
     const newUser = {
       id: uuid(),
-      ...args.params
-    }
-    db.userList.push(newUser)
-    return newUser
-  }
-}
+      ...args.params,
+    };
+    db.userList.push(newUser);
+    return newUser;
+  },
+};
